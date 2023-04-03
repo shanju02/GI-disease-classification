@@ -24,8 +24,9 @@ from numpy import asarray
 from os import listdir
 from scipy import stats
 from sklearn import preprocessing
+from numpy import savetxt
 
-path = "F:/NPDF/Work/CNN/final-GI-disease-model"
+path = "------path of the extracted folder------"
 
 # Functions to load image data, model and perform classification task
 def load_dataset(folder):
@@ -58,18 +59,15 @@ def max_in_array(x):
 
 labels = np.array(['esophagitis', 'normal', 'polyps', 'ulcer'])
 lb = preprocessing.LabelBinarizer()
+y_labels = lb.fit_transform(labels)
 
 #Prediction
 yhats2 = cnn_prediction(path)
 predict = max_in_array(yhats2)
-#print ("prediction is: ", predict)
-y_labels = lb.fit_transform(labels)
-
 y_prediction = lb.inverse_transform(predict)
 print ("Predicted GI disease: ",y_prediction)
 
-from numpy import savetxt
-import pandas as pd
+#Saving predictions
 DF = pd.DataFrame(y_prediction)
 DF.to_csv(path+"prediction.csv")
 print ("Prediction saved")
