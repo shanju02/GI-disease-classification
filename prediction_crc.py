@@ -1,5 +1,4 @@
-"""prediction_crc.ipynb
-
+"""
 Program to use CRC-ResNet50 model for classifying images 
 Package requirements:
     a) python = 3.9 
